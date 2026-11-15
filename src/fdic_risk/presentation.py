@@ -4,7 +4,24 @@ import json,os
 import nbformat as nbf
 from .pipeline import ROOT
 
-def build_notebook(execute=False):
+def unpack_results(include_test=True):
+    """Restore published aggregate outputs; never overwrite new calculations."""
+    from zipfile import ZipFile
+    archive = ROOT / 'results/summary_tables.zip'
+    target = ROOT / 'reports/tables'
+    target.mkdir(parents=True, exist_ok=True)
+    with ZipFile(archive) as bundle:
+        for name in bundle.namelist():
+            if Path(name).name != name:
+                raise ValueError('Unexpected path in result archive')
+            if not include_test and name.startswith('test'):
+                continue
+            path = target / name
+            if not path.exists():
+                path.write_bytes(bundle.read(name))
+
+def build_notebook(execute=False, include_saved_test=True):
+    unpack_results(include_test=include_saved_test)
     cells=[]
     def md(s):cells.append(nbf.v4.new_markdown_cell(s))
     def code(s):cells.append(nbf.v4.new_code_cell(s))
@@ -170,8 +187,8 @@ ax.set(xlabel="Quarterly alert share (%)", ylabel="Illustrative loss (million US
 ax.legend(); fig.tight_layout(); fig.savefig(FIGURES / "cost_sensitivity.png", dpi=150); plt.show()''')
     md('''Escalation is a separate uncertain increment, not silently priced as a full onsite exam for every alert. Capacity scenarios convert paid hours to productive hours allocated to this task. Historical peak load is reported; it is not a future capacity guarantee. We do not tune cost assumptions to obtain a desirable alert budget or model winner.''')
     code('''display(read("escalation_sensitivity.csv"))
-load = read("test_workload_sensitivity.csv")
-display(load[(load.pipeline == "B3") & np.isclose(load.q, policy["selected_q"]) & (load.h_new == 4) & (load.repeat_fraction == .5)][["FTE", "available_hours_scenario", "mean_hours", "peak_hours", "quarters_over_capacity", "quarters"]].round(2))''')
+workload = read("test_workload_sensitivity.csv")
+display(workload[(workload.pipeline == "B3") & np.isclose(workload.q, policy["selected_q"]) & (workload.h_new == 4) & (workload.repeat_fraction == .5)][["FTE", "available_hours_scenario", "mean_hours", "peak_hours", "quarters_over_capacity", "quarters"]].round(2))''')
     md('''## 11. Final fit and one-time holdout evaluation
 The selected B3 procedure and two predeclared controls were fitted on dev as-of dates through 2011Q4, with all training labels matured by 2012-12-31. The final feature set is the dev-only selection B plus the T block. Models, schemas, seeds, preprocessing, policy and SHA hashes were frozen before constructing test features.
 
@@ -228,6 +245,11 @@ For Vietnam, replace US Call Report definitions with SBV/local accounting mappin
 
 References and direct links are listed in `references/README.md`. The public repository URL is added after repository creation; no public repository has been created automatically.''')
     nb=nbf.v4.new_notebook(cells=cells,metadata={'kernelspec':{'display_name':'Python 3.11 (FDIC)','language':'python','name':'python3'},'language_info':{'name':'python','version':'3.11'}})
+    setup = next(c for c in nb.cells if c.cell_type == 'code')
+    setup.source = setup.source.replace('TABLES = ROOT', 'from fdic_risk.presentation import unpack_results\nunpack_results(include_test=' + repr(include_saved_test) + ')\nTABLES = ROOT', 1)
+    for cell in nb.cells:
+        if cell.cell_type == 'markdown':
+            cell.source = cell.source.replace('The public repository URL is added after repository creation; no public repository has been created automatically.', 'Repository: https://github.com/khanhnlmneuron6-hue/fdic-bank-failure-risk-analytics. Published aggregate inputs are restored from results/summary_tables.zip; bank-level datasets are not included.')
     path=ROOT/'notebooks/fdic_bank_failure_early_warning.ipynb';nbf.write(nb,path)
     if execute:
         from nbclient import NotebookClient
