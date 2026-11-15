@@ -16,3 +16,9 @@ __pycache__/
 *.fdb_latexmk
 *.fls
 *.synctex.gz
+
+# Generated presentation files; the report and one overview image are supplied.
+reports/tables/
+reports/portfolio.html
+reports/figures/*
+!reports/figures/holdout_results.png
