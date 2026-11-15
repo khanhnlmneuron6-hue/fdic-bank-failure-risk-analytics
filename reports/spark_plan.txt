@@ -1,0 +1,78 @@
+== Parsed Logical Plan ==
+'Sort ['REPDTE ASC NULLS FIRST], true
++- Aggregate [REPDTE#1], [REPDTE#1, count(1) AS rows#23L, avg(eq_assets#20) AS eq_assets#24, avg(npl#21) AS npl#25, sum(flow#22) AS flow#26]
+   +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10, eq_assets#20, npl#21, CASE WHEN (substring(REPDTE#1, 5, 2) = 03) THEN NETINC#6 ELSE (NETINC#6 - prev_netinc#10) END AS flow#22]
+      +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10, eq_assets#20, CASE WHEN (LNLSGR#4 > cast(0 as double)) THEN ((NCLNLS#5 * cast(100 as double)) / LNLSGR#4) END AS npl#21]
+         +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10, CASE WHEN (ASSET#2 > cast(0 as double)) THEN ((EQ#3 * cast(100 as double)) / ASSET#2) END AS eq_assets#20]
+            +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10]
+               +- Join LeftOuter, ((CERT#0L = CERT#11L) AND (qi#8L = qi#9L))
+                  :- Project [CERT#0L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, ((cast(substring(REPDTE#1, 1, 4) as bigint) * cast(4 as bigint)) + FLOOR((cast((cast(substring(REPDTE#1, 5, 2) as int) - 1) as double) / cast(3 as double)))) AS qi#8L]
+                  :  +- Relation [CERT#0L,REPDTE#1,ASSET#2,EQ#3,LNLSGR#4,NCLNLS#5,NETINC#6] parquet
+                  +- Project [CERT#11L, (qi#18L + cast(1 as bigint)) AS qi#9L, NETINC#17 AS prev_netinc#10]
+                     +- Project [CERT#11L, REPDTE#12, ASSET#13, EQ#14, LNLSGR#15, NCLNLS#16, NETINC#17, ((cast(substring(REPDTE#12, 1, 4) as bigint) * cast(4 as bigint)) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / cast(3 as double)))) AS qi#18L]
+                        +- Relation [CERT#11L,REPDTE#12,ASSET#13,EQ#14,LNLSGR#15,NCLNLS#16,NETINC#17] parquet
+
+== Analyzed Logical Plan ==
+REPDTE: string, rows: bigint, eq_assets: double, npl: double, flow: double
+Sort [REPDTE#1 ASC NULLS FIRST], true
++- Aggregate [REPDTE#1], [REPDTE#1, count(1) AS rows#23L, avg(eq_assets#20) AS eq_assets#24, avg(npl#21) AS npl#25, sum(flow#22) AS flow#26]
+   +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10, eq_assets#20, npl#21, CASE WHEN (substring(REPDTE#1, 5, 2) = 03) THEN NETINC#6 ELSE (NETINC#6 - prev_netinc#10) END AS flow#22]
+      +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10, eq_assets#20, CASE WHEN (LNLSGR#4 > cast(0 as double)) THEN ((NCLNLS#5 * cast(100 as double)) / LNLSGR#4) END AS npl#21]
+         +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10, CASE WHEN (ASSET#2 > cast(0 as double)) THEN ((EQ#3 * cast(100 as double)) / ASSET#2) END AS eq_assets#20]
+            +- Project [CERT#0L, qi#8L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, prev_netinc#10]
+               +- Join LeftOuter, ((CERT#0L = CERT#11L) AND (qi#8L = qi#9L))
+                  :- Project [CERT#0L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, ((cast(substring(REPDTE#1, 1, 4) as bigint) * cast(4 as bigint)) + FLOOR((cast((cast(substring(REPDTE#1, 5, 2) as int) - 1) as double) / cast(3 as double)))) AS qi#8L]
+                  :  +- Relation [CERT#0L,REPDTE#1,ASSET#2,EQ#3,LNLSGR#4,NCLNLS#5,NETINC#6] parquet
+                  +- Project [CERT#11L, (qi#18L + cast(1 as bigint)) AS qi#9L, NETINC#17 AS prev_netinc#10]
+                     +- Project [CERT#11L, REPDTE#12, ASSET#13, EQ#14, LNLSGR#15, NCLNLS#16, NETINC#17, ((cast(substring(REPDTE#12, 1, 4) as bigint) * cast(4 as bigint)) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / cast(3 as double)))) AS qi#18L]
+                        +- Relation [CERT#11L,REPDTE#12,ASSET#13,EQ#14,LNLSGR#15,NCLNLS#16,NETINC#17] parquet
+
+== Optimized Logical Plan ==
+Sort [REPDTE#1 ASC NULLS FIRST], true
++- Aggregate [REPDTE#1], [REPDTE#1, count(1) AS rows#23L, avg(eq_assets#20) AS eq_assets#24, avg(npl#21) AS npl#25, sum(flow#22) AS flow#26]
+   +- Project [REPDTE#1, CASE WHEN (ASSET#2 > 0.0) THEN ((EQ#3 * 100.0) / ASSET#2) END AS eq_assets#20, CASE WHEN (LNLSGR#4 > 0.0) THEN ((NCLNLS#5 * 100.0) / LNLSGR#4) END AS npl#21, CASE WHEN (substring(REPDTE#1, 5, 2) = 03) THEN NETINC#6 ELSE (NETINC#6 - prev_netinc#10) END AS flow#22]
+      +- Join LeftOuter, ((CERT#0L = CERT#11L) AND (qi#8L = qi#9L))
+         :- Project [CERT#0L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, ((cast(substring(REPDTE#1, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#1, 5, 2) as int) - 1) as double) / 3.0))) AS qi#8L]
+         :  +- Relation [CERT#0L,REPDTE#1,ASSET#2,EQ#3,LNLSGR#4,NCLNLS#5,NETINC#6] parquet
+         +- Project [CERT#11L, (((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / 3.0))) + 1) AS qi#9L, NETINC#17 AS prev_netinc#10]
+            +- Filter (isnotnull(CERT#11L) AND isnotnull((((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / 3.0))) + 1)))
+               +- Relation [CERT#11L,REPDTE#12,ASSET#13,EQ#14,LNLSGR#15,NCLNLS#16,NETINC#17] parquet
+
+== Physical Plan ==
+AdaptiveSparkPlan isFinalPlan=true
++- == Final Plan ==
+   ResultQueryStage 3
+   +- *(4) Sort [REPDTE#1 ASC NULLS FIRST], true, 0
+      +- AQEShuffleRead coalesced
+         +- ShuffleQueryStage 2
+            +- Exchange rangepartitioning(REPDTE#1 ASC NULLS FIRST, 4), ENSURE_REQUIREMENTS, [plan_id=180]
+               +- *(3) HashAggregate(keys=[REPDTE#1], functions=[count(1), avg(eq_assets#20), avg(npl#21), sum(flow#22)], output=[REPDTE#1, rows#23L, eq_assets#24, npl#25, flow#26])
+                  +- AQEShuffleRead coalesced
+                     +- ShuffleQueryStage 1
+                        +- Exchange hashpartitioning(REPDTE#1, 4), ENSURE_REQUIREMENTS, [plan_id=144]
+                           +- *(2) HashAggregate(keys=[REPDTE#1], functions=[partial_count(1), partial_avg(eq_assets#20), partial_avg(npl#21), partial_sum(flow#22)], output=[REPDTE#1, count#49L, sum#50, count#51L, sum#52, count#53L, sum#54])
+                              +- *(2) Project [REPDTE#1, CASE WHEN (ASSET#2 > 0.0) THEN ((EQ#3 * 100.0) / ASSET#2) END AS eq_assets#20, CASE WHEN (LNLSGR#4 > 0.0) THEN ((NCLNLS#5 * 100.0) / LNLSGR#4) END AS npl#21, CASE WHEN (substring(REPDTE#1, 5, 2) = 03) THEN NETINC#6 ELSE (NETINC#6 - prev_netinc#10) END AS flow#22]
+                                 +- *(2) BroadcastHashJoin [CERT#0L, qi#8L], [CERT#11L, qi#9L], LeftOuter, BuildRight, false, false
+                                    :- *(2) Project [CERT#0L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, ((cast(substring(REPDTE#1, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#1, 5, 2) as int) - 1) as double) / 3.0))) AS qi#8L]
+                                    :  +- *(2) ColumnarToRow
+                                    :     +- FileScan parquet [CERT#0L,REPDTE#1,ASSET#2,EQ#3,LNLSGR#4,NCLNLS#5,NETINC#6] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:<PRIVATE_DATA_LOCATION>, PartitionFilters: [], PushedFilters: [], ReadSchema: struct<CERT:bigint,REPDTE:string,ASSET:double,EQ:double,LNLSGR:double,NCLNLS:double,NETINC:double>
+                                    +- BroadcastQueryStage 0
+                                       +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, true], input[1, bigint, true]),false), [plan_id=75]
+                                          +- *(1) Project [CERT#11L, (((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / 3.0))) + 1) AS qi#9L, NETINC#17 AS prev_netinc#10]
+                                             +- *(1) Filter (isnotnull(CERT#11L) AND isnotnull((((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / 3.0))) + 1)))
+                                                +- *(1) ColumnarToRow
+                                                   +- FileScan parquet [CERT#11L,REPDTE#12,NETINC#17] Batched: true, DataFilters: [isnotnull(CERT#11L), isnotnull((((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast(..., Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:<PRIVATE_DATA_LOCATION>, PartitionFilters: [], PushedFilters: [IsNotNull(CERT)], ReadSchema: struct<CERT:bigint,REPDTE:string,NETINC:double>
++- == Initial Plan ==
+   Sort [REPDTE#1 ASC NULLS FIRST], true, 0
+   +- Exchange rangepartitioning(REPDTE#1 ASC NULLS FIRST, 4), ENSURE_REQUIREMENTS, [plan_id=41]
+      +- HashAggregate(keys=[REPDTE#1], functions=[count(1), avg(eq_assets#20), avg(npl#21), sum(flow#22)], output=[REPDTE#1, rows#23L, eq_assets#24, npl#25, flow#26])
+         +- Exchange hashpartitioning(REPDTE#1, 4), ENSURE_REQUIREMENTS, [plan_id=38]
+            +- HashAggregate(keys=[REPDTE#1], functions=[partial_count(1), partial_avg(eq_assets#20), partial_avg(npl#21), partial_sum(flow#22)], output=[REPDTE#1, count#49L, sum#50, count#51L, sum#52, count#53L, sum#54])
+               +- Project [REPDTE#1, CASE WHEN (ASSET#2 > 0.0) THEN ((EQ#3 * 100.0) / ASSET#2) END AS eq_assets#20, CASE WHEN (LNLSGR#4 > 0.0) THEN ((NCLNLS#5 * 100.0) / LNLSGR#4) END AS npl#21, CASE WHEN (substring(REPDTE#1, 5, 2) = 03) THEN NETINC#6 ELSE (NETINC#6 - prev_netinc#10) END AS flow#22]
+                  +- BroadcastHashJoin [CERT#0L, qi#8L], [CERT#11L, qi#9L], LeftOuter, BuildRight, false, false
+                     :- Project [CERT#0L, REPDTE#1, ASSET#2, EQ#3, LNLSGR#4, NCLNLS#5, NETINC#6, ((cast(substring(REPDTE#1, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#1, 5, 2) as int) - 1) as double) / 3.0))) AS qi#8L]
+                     :  +- FileScan parquet [CERT#0L,REPDTE#1,ASSET#2,EQ#3,LNLSGR#4,NCLNLS#5,NETINC#6] Batched: true, DataFilters: [], Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:<PRIVATE_DATA_LOCATION>, PartitionFilters: [], PushedFilters: [], ReadSchema: struct<CERT:bigint,REPDTE:string,ASSET:double,EQ:double,LNLSGR:double,NCLNLS:double,NETINC:double>
+                     +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, true], input[1, bigint, true]),false), [plan_id=33]
+                        +- Project [CERT#11L, (((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / 3.0))) + 1) AS qi#9L, NETINC#17 AS prev_netinc#10]
+                           +- Filter (isnotnull(CERT#11L) AND isnotnull((((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast((cast(substring(REPDTE#12, 5, 2) as int) - 1) as double) / 3.0))) + 1)))
+                              +- FileScan parquet [CERT#11L,REPDTE#12,NETINC#17] Batched: true, DataFilters: [isnotnull(CERT#11L), isnotnull((((cast(substring(REPDTE#12, 1, 4) as bigint) * 4) + FLOOR((cast(..., Format: Parquet, Location: InMemoryFileIndex(1 paths)[file:<PRIVATE_DATA_LOCATION>, PartitionFilters: [], PushedFilters: [IsNotNull(CERT)], ReadSchema: struct<CERT:bigint,REPDTE:string,NETINC:double>

@@ -1,0 +1,21 @@
+SORT BY [col("REPDTE")]
+  AGGREGATE[maintain_order: false]
+    [len().alias("rows"), col("eq_assets").mean(), col("npl").mean(), col("flow").sum()] BY [col("REPDTE")]
+    FROM
+    simple π 4/4 ["REPDTE", "eq_assets", "npl", ... 1 other column]
+       WITH_COLUMNS:
+       [when(col("ASSET") > 0.0).then((100.0 * col("EQ")) / col("ASSET")).otherwise(null.cast(Float64)).alias("eq_assets"), when(col("LNLSGR") > 0.0).then((100.0 * col("NCLNLS")) / col("LNLSGR")).otherwise(null.cast(Float64)).alias("npl"), when(col("REPDTE").str.slice([dyn int: 4, dyn int: 2]) == "03").then(col("NETINC")).otherwise(col("NETINC") - col("prev_netinc")).alias("flow")] 
+        simple π 7/7 ["REPDTE", "ASSET", "EQ", ... 4 other columns]
+          LEFT JOIN:
+          LEFT PLAN ON: [col("CERT"), col("qi")]
+            CACHE[id: 39194631-d4b7-470a-8cc6-e9525fa7cce3]
+               WITH_COLUMNS:
+               [((col("REPDTE").str.slice([dyn int: 0, dyn int: 4]).strict_cast(Int64) * 4) + ((col("REPDTE").str.slice([dyn int: 4, dyn int: 2]).strict_cast(Int64) - 1) // 3)).alias("qi")] 
+                Parquet SCAN [<PROJECT_ROOT>/data/benchmark/financials.parquet]
+                PROJECT */7 COLUMNS
+                ESTIMATED ROWS: 1350892
+          RIGHT PLAN ON: [col("CERT"), col("qi")]
+            SELECT [col("CERT"), (col("qi") + 1), col("NETINC").alias("prev_netinc")]
+              simple π 3/3 ["CERT", "qi", "NETINC"]
+                CACHE[id: 39194631-d4b7-470a-8cc6-e9525fa7cce3]
+          END LEFT JOIN
