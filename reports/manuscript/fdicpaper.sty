@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fdicpaper}[2026/11/15 Consistent academic manuscript style]
+\RequirePackage[T5,T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english]{babel}
+\RequirePackage{tgtermes}
+\RequirePackage{newtxmath}
+\RequirePackage{microtype}
+% Vietnamese author name uses T5; no edge protrusion is requested there.
+\SetProtrusion[name=termestfive]{encoding=T5,family=qtm}{}
+\RequirePackage[a4paper,left=27mm,right=27mm,top=25mm,bottom=25mm,footskip=12mm]{geometry}
+\RequirePackage{setspace}
+\setstretch{1.12}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
+\frenchspacing
+\raggedbottom
+\RequirePackage{amsmath}
+\RequirePackage{booktabs,array,tabularx,threeparttable}
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=period,skip=6pt,justification=justified,singlelinecheck=false}
+\RequirePackage[section]{placeins}
+\RequirePackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{.7em}{}
+\titlespacing*{\section}{0pt}{2.0ex plus .3ex minus .2ex}{.9ex plus .1ex}
+\titlespacing*{\subsection}{0pt}{1.5ex plus .2ex minus .2ex}{.6ex plus .1ex}
+\setlength{\textfloatsep}{14pt plus 2pt minus 2pt}
+\setlength{\intextsep}{12pt plus 2pt minus 2pt}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\bottomfraction}{.8}
+\renewcommand{\textfraction}{.08}
+\renewcommand{\floatpagefraction}{.8}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+\RequirePackage[numbers,square,sort&compress]{natbib}
+\setlength{\bibsep}{3pt}
+\renewcommand{\bibfont}{\footnotesize}
+\RequirePackage{xcolor}
+\definecolor{linknavy}{HTML}{1D3557}
+\RequirePackage[hyphens]{url}
+\urlstyle{same}
+\RequirePackage[colorlinks=true,allcolors=linknavy,pdfdisplaydoctitle=true,bookmarksnumbered=true]{hyperref}
+\RequirePackage{bookmark}
+\newcommand{\papernotes}[1]{\begin{minipage}{\linewidth}\footnotesize\setstretch{1.0}\vspace{4pt}\textit{Notes.} #1\end{minipage}}
+\newcommand{\evidence}[1]{\nolinkurl{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\pagestyle{plain}
+
+% Keep the vertical rhythm fixed on pages containing only floats.
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{14pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+\AtBeginEnvironment{thebibliography}{\interlinepenalty=10000}
