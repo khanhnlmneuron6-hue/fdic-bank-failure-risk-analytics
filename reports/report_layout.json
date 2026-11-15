@@ -1,8 +1,0 @@
-{
-  "pages": 15,
-  "main_pages": 14,
-  "appendix_pages": 1,
-  "tables": 11,
-  "figures": 6,
-  "renderer": "pdfLaTeX + BibTeX"
-}
