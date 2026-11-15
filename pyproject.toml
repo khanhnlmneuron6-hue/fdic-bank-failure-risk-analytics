@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "fdic-risk-analytics"
+version = "1.0.0"
+description = "Auditable FDIC financial-data pipeline and bank-failure early warning"
+requires-python = ">=3.11,<3.12"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,18 @@
+data/
+models/
+.local/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.DS_Store
+.env
+
+# Local TeX intermediates (editable .tex/.sty/.bib remain public)
+*.aux
+*.blg
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz

@@ -1,0 +1,43 @@
+# config.yaml - the ONLY configuration source. The notebook prints the active values in Section 1.
+# Change a choice here, never inside notebook code.
+
+seed: 42
+
+paths:                         # relative to the project root (folder of this file)
+  raw: data/raw                # API responses exactly as received (gzip JSON lines). Immutable.
+  interim: data/interim        # typed Parquet copies of raw + intermediate tables
+  processed: data/processed    # clean panel, labels, features (model inputs)
+  manifests: data/manifests    # download manifests and the HTTP request log
+  reports: reports             # small summary tables / figures (committed)
+
+download:
+  base_url: https://api.fdic.gov/banks
+  page_size: 10000             # API maximum rows per call
+  pause_s: 0.5                 # politeness pause after each successful call
+  max_retries: 6
+  start: "1984-03-31"          # exam scope: Financials 1984Q1 ...
+  end: "2026-06-30"            # ... to 2026Q2
+  dictionaries: [risview_properties.yaml, failure_properties.yaml, institution_properties.yaml]
+
+# Financials (Call Report) fields: ONE list of 87 fields (justification: docs/field_review.md).
+# Changing this list makes the notebook re-download every quarter with the new list (resume rule, cell 2.8),
+# so each quarter always has one raw file and one typed file containing exactly these fields.
+# Amounts in USD thousands, ratios in percent.
+financial_fields:
+  keys:          [CERT, REPDTE, STNAME]
+  size_struct:   [ASSET, DEP, DEPDOM, OFFDOM, BKCLASS, CB, SPECGRP, CALLFORM, ESTYMD]
+  balance_check: [LIAB, LIABEQ]
+  capital:       [EQ, EQV, INTAN, RBC1AAJ, RBC1RWAJ, RBCRWAJ, IDT1RWAJR, IDT1CER, RBCT1J, RWAJT]
+  asset_qual:    [LNLSGR, LNLSNET, LNATRES, NCLNLS, NALNLS, P3ASSET, P9ASSET, NAASSET,
+                  P3LNLS, P9LNLS, NTLNLS, NTLNLSQ, ORE, NCLNLSR, NPERFV, LNATRESR, LNRESNCR]
+  loan_mix:      [LNRE, LNRECONS, LNRENRES, LNREMULT, LNRERES, LNREAG, LNCI, LNCON]
+  securities:    [SC, SCHA, SCHF, SCAF, SCAA]
+  earnings:      [NETINC, NETINCQ, INTINC, EINTEXP, NONII, NONIIQ, NONIX, ELNATR,
+                  ROA, ROAQ, ROAPTX, ROE, ROEQ, NIMY, NIMYQ, ELNATRY, ERNAST, INTEXPYQ]
+  liquidity:     [CHBAL, LNLSDEPR, IDLNCORR]
+  funding:       [DDT, NTRTIME, OTHBOR, OTHBRF, FREPP, BRO, BROINS, COREDEP, VOLIAB,
+                  DEPINS, DEPUNINS, DEPLGAMT]
+
+# Small tables: every field documented in the FDIC dictionary is downloaded.
+failure_fields: all
+institution_fields: all
