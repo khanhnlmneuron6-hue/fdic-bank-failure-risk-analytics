@@ -1,0 +1,200 @@
+[
+  {
+    "function": "q_index",
+    "source_cell": 16,
+    "source_sha256": "a2237c4ad5154d7efbb31f53e4835a5160831313d005b3c41a10844b337dbab7",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "repdte",
+    "source_cell": 16,
+    "source_sha256": "301f8c132aba5a7616b77326aec8af26960cb23da6df32159451cfecbd3c43d7",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "duplicate_key_report",
+    "source_cell": 176,
+    "source_sha256": "1e3e10606824b313d2d58c3806b4f90c16814edcbe8469c08fa810fe1a162322",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "DuplicateKeyError",
+    "source_cell": 176,
+    "source_sha256": "3365a39525036032715c7312996edac108183e36b70818f753fbe3c41eaf64de",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_tech_view",
+    "source_cell": 176,
+    "source_sha256": "59633f459de292154fd0d1b9f131f7aee53f0c783589f7b938d374511c07ccc8",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "apply_mask",
+    "source_cell": 198,
+    "source_sha256": "d48c55486d1fac537b3cbbe7c0f8105f2583921dd61a3d9c6bbebd7218f84ff1",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_pit_view",
+    "source_cell": 198,
+    "source_sha256": "2bf70bd4428d12c0c5a00fce4b8b4317da4417953d8e82a6bf5563134a069db7",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "_zstat",
+    "source_cell": 251,
+    "source_sha256": "00cb0270230de25a0702ed03dc7c6dd4a6a6fe2d7935b6dbdca58f2726a11144",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "_masked",
+    "source_cell": 251,
+    "source_sha256": "2709b8821742a25b15f435282cd1900afa770cd458c7409fdf2afc4c8b0b475d",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "d8_status",
+    "source_cell": 251,
+    "source_sha256": "0950020915b151a67811cc2ef2ee42e7b9ab051806cc8ecd0197232708584fa1",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "apply_d8",
+    "source_cell": 251,
+    "source_sha256": "17ec0cbf27bd59bcf3270800e0d2f2ef70447d3e4009f415867769bec88387bb",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_flows",
+    "source_cell": 210,
+    "source_sha256": "c8fcd5bbb6682c09bc30edfb55d987cdf0f8600e248c772f4d3e1bea1b2891f1",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "_cell_null_share",
+    "source_cell": 296,
+    "source_sha256": "e4880c61831c3a8f2b17406860360174bfb6ca4bf24954172ddaac16bf540b7b",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_core_features",
+    "source_cell": 296,
+    "source_sha256": "8d0e7e8b850ceb80c77d6435804f5ded5e76c57db3fe56b7ec598314f31ffc48",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "reconcile_roa_1985",
+    "source_cell": 312,
+    "source_sha256": "f6e32dbdc02ff10cfa3c3105df2f890a6c24302c4107d802d1ba2c219dee7af7",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_model_inputs",
+    "source_cell": 315,
+    "source_sha256": "a80f284e511e188fe78f9275d894115d3b28fe3ebcda333cc00fb660692f58b3",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "_ratio",
+    "source_cell": 285,
+    "source_sha256": "50f6fba3fb3f2aad467744fd24c9086d786b2248eaefd93f2e18cf80e66fc698",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "_ttm",
+    "source_cell": 285,
+    "source_sha256": "6c1fd8b7cdedef6c8f5e17c74c5a110e964dfba980c65f364314874d0acd6b65",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_feature_candidates",
+    "source_cell": 285,
+    "source_sha256": "1e0c962e09562e18dc21952fb09cc555fb902c071840cea2f8bcf1f0f146e897",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "classify_ytd_quarters",
+    "source_cell": 422,
+    "source_sha256": "b8bc73f43dba97eeef3fd873987da1a5e0bab06c534193bb7e1da56b2561429b",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "ytd_identity_ttm",
+    "source_cell": 431,
+    "source_sha256": "63b53ea486fbe7fb67b4c87794a0e25d01bb3051921a2030d9feb034f61873fa",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "i01x_recovery_log",
+    "source_cell": 431,
+    "source_sha256": "525299820a259a00a7f6e87b507ccb2e20fa3d0e94be34d7d499756babd9d45c",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "dq_fill",
+    "source_cell": 431,
+    "source_sha256": "9cffd36c5f0d69a4f5930b49e39aab9f9380676f03d53e726306b5872601f11f",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "dq_quarantine_log",
+    "source_cell": 431,
+    "source_sha256": "404450592392f630d79e8a74a18e659f2a4875dd8bd01014407593f57704b856",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "dq_apply",
+    "source_cell": 431,
+    "source_sha256": "a83ee32749c71c50424773b016a9ea2fec6422efac7d08acbeabceb68992adfe",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "k3_window_null",
+    "source_cell": 479,
+    "source_sha256": "b7f5ccec575145b1d33b9c1d5473b7f2ed06e51ffd2aa3ee35cdbf2398bfb372",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_pool_features",
+    "source_cell": 479,
+    "source_sha256": "c4fc85d5c23bc65785ec8bbdd0f9225de56b1520095a7913382bc67d4ae31930",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "prepare_pool_clean",
+    "source_cell": 484,
+    "source_sha256": "ec3263fb1e559fb88d08554eb5bef5a85c10a71ec3f92350344179dd7548fb59",
+    "edit": "explicit scope_end parameter instead of dev-only global"
+  },
+  {
+    "function": "build_events",
+    "source_cell": 137,
+    "source_sha256": "872a2f0ff556dfdaf8fd95594937af9e97a32dc7958972d74b20c882b490f0e6",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_exits",
+    "source_cell": 137,
+    "source_sha256": "fe2d294344d42e29b05756cd042178f82290770aa20e5a69fa1f129ad93b60d2",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "build_audit",
+    "source_cell": 139,
+    "source_sha256": "b07be5a1750e62b04aa297499cd8171423f414a0ca26f1757dc796f43a5138fe",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "ContractCapperV4",
+    "source_cell": 522,
+    "source_sha256": "45e41f8859f9f271fceb41f01cf378da37aea6aff281638bcb8fe96db55c0db1",
+    "edit": "definition copied; runtime blocks removed"
+  },
+  {
+    "function": "v59_block_T",
+    "source_cell": 595,
+    "source_sha256": "29f5f5522d5e352d45734fc6ecbb60ce9506442834784fdcb2fbef6be32a7747",
+    "edit": "definition copied; runtime blocks removed"
+  }
+]

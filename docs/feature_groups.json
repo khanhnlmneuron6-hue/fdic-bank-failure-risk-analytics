@@ -1,0 +1,111 @@
+{
+  "FS_UNITS": {
+    "cap": [
+      "eq_assets"
+    ],
+    "npl": [
+      "noncurrent_loans"
+    ],
+    "reserve": [
+      "reserve_loans"
+    ],
+    "earn": [
+      "roa_ttm"
+    ],
+    "nim": [
+      "nim_ttm"
+    ],
+    "prov": [
+      "provision_loans_ttm"
+    ],
+    "loandep": [
+      "loans_deposits"
+    ],
+    "borrow": [
+      "borrowed_assets"
+    ],
+    "size": [
+      "log_assets"
+    ],
+    "brokered": [
+      "brokered_assets"
+    ],
+    "oreq": [
+      "ore_assets",
+      "npa_assets"
+    ],
+    "conc_re": [
+      "cd_assets",
+      "cre_assets",
+      "multifam_assets",
+      "resid_assets"
+    ],
+    "conc_oth": [
+      "loans_assets",
+      "ci_assets",
+      "consumer_assets"
+    ],
+    "liq": [
+      "cash_assets",
+      "securities_assets"
+    ],
+    "fedfunds": [
+      "fedfunds_repo_assets"
+    ],
+    "struct": [
+      "intangibles_assets",
+      "log_age",
+      "log_offices"
+    ],
+    "d_cap": [
+      "eq_assets_chg4"
+    ],
+    "d_quality": [
+      "noncurrent_loans_chg4",
+      "reserve_loans_chg4"
+    ],
+    "d_earn": [
+      "roa_ttm_chg4"
+    ],
+    "d_funding": [
+      "loans_deposits_chg4",
+      "borrowed_assets_chg4"
+    ],
+    "d_oreq": [
+      "ore_assets_chg4",
+      "npa_assets_chg4"
+    ]
+  },
+  "FS_UNIT_LIST": [
+    "cap",
+    "npl",
+    "reserve",
+    "earn",
+    "nim",
+    "prov",
+    "loandep",
+    "borrow",
+    "size",
+    "brokered",
+    "oreq",
+    "conc_re",
+    "conc_oth",
+    "liq",
+    "fedfunds",
+    "struct",
+    "d_cap",
+    "d_quality",
+    "d_earn",
+    "d_funding",
+    "d_oreq"
+  ],
+  "FS_CORE": [
+    "cap",
+    "npl",
+    "reserve",
+    "earn",
+    "loandep",
+    "borrow",
+    "size"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "approved_by_user": "explicit user approval in Codex chat 2026-11-15; one evaluation in independent portfolio copy",
+  "author": "Nguy\u1ec5n L\u00ea Nam Kh\u00e1nh",
+  "controls": [
+    "core7_iRF",
+    "core7_LR"
+  ],
+  "feature_config_sha256": "40c4dac90f29a122491482863f2cc54a4584a845d116dc1439818cb4cf4f5109",
+  "frozen_utc": "2026-11-15T11:58:58.856629+00:00",
+  "main_pipeline": "B3",
+  "metrics": [
+    "AP-D7",
+    "pooled AP",
+    "ROC-AUC",
+    "confusion matrix",
+    "precision",
+    "row recall",
+    "unique event recall",
+    "lead time",
+    "alert volume",
+    "gross review workload"
+  ],
+  "model_columns": {
+    "B3": [
+      "eq_assets",
+      "noncurrent_loans",
+      "roa_ttm",
+      "nim_ttm",
+      "provision_loans_ttm",
+      "ore_assets",
+      "npa_assets",
+      "cd_assets",
+      "cre_assets",
+      "multifam_assets",
+      "resid_assets",
+      "cash_assets",
+      "securities_assets",
+      "eq_assets_chg4",
+      "noncurrent_loans_chg4",
+      "reserve_loans_chg4",
+      "loans_deposits_chg4",
+      "borrowed_assets_chg4",
+      "ore_assets_chg4",
+      "npa_assets_chg4",
+      "texas_proxy",
+      "texas_den_nonpos",
+      "buffer_gap_assets",
+      "uncovered_ncl_assets"
+    ],
+    "core7_LR": [
+      "eq_assets",
+      "noncurrent_loans",
+      "reserve_loans",
+      "roa_ttm",
+      "loans_deposits",
+      "borrowed_assets",
+      "log_assets"
+    ],
+    "core7_iRF": [
+      "eq_assets",
+      "noncurrent_loans",
+      "reserve_loans",
+      "roa_ttm",
+      "loans_deposits",
+      "borrowed_assets",
+      "log_assets"
+    ]
+  },
+  "model_hashes": {
+    "B3": "2f1a6efccc9c358408e6bb64d918b331eb4550f27dcae7260902e3c2756b640f",
+    "core7_LR": "46864325393c3fb205cd9e58bf0a09b041478365ebf7313542522d2664b27c09",
+    "core7_iRF": "eacc330efb3371d300def4d1d06e3c3573cb4af3206e47abab75d3039b3b6a8e"
+  },
+  "policy_sha256": "dfac3267fc7f11059397ba7dbf1c53b65cad25188da7c18ecb1a7e82a091a544",
+  "primary_cost_scenario": {
+    "alpha_grid": [
+      0.0,
+      1e-05,
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "alpha_primary": 0.001,
+    "cost_price_basis": "annual-mean 2012 CPI, latest snapshot (retrospective pricing)",
+    "description": "Illustrative severity-weighted decision loss, not operationally validated budget or causal savings",
+    "h_new": 4.0,
+    "hourly_usd_2012": 110.0,
+    "price_index_base": 229.5939166666667,
+    "q_grid": [
+      0,
+      0.0025,
+      0.005,
+      0.01,
+      0.02,
+      0.0353,
+      0.05,
+      0.075,
+      0.1,
+      0.15,
+      0.2,
+      0.3,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "repeat_fraction": 0.5,
+    "repeat_rule": "new file after any non-alerted or missing calendar quarter; cold start",
+    "selected_dev_result": {
+      "alerts": 20849,
+      "alpha": 0.001,
+      "caught_events": 473,
+      "events": 514,
+      "hours": 53398.0,
+      "loss_kusd_2012": 13108.365629035692,
+      "missed_severity_kusd_2012": 7234585.629035692,
+      "new_files": 5850,
+      "peak_quarter_hours": 1664.0,
+      "q": 0.0353,
+      "repeat_reviews": 14999,
+      "review_cost_kusd_2012": 5873.78,
+      "scheme": "fixed_origin",
+      "unknown_severity_events": 1,
+      "unknown_value_kusd": 43523.62366996777
+    },
+    "selected_q": 0.0353,
+    "selection_scheme": "fixed_origin",
+    "status": "frozen illustrative policy; preference alpha not empirically identified",
+    "tie_break": "lowest loss, then fewer alerts, then smaller q",
+    "unknown_cost": "median of nonmissing nonnegative event severity in the dev cohort; 0 remains 0"
+  },
+  "primary_q": 0.0353,
+  "reference_q": [
+    0.01,
+    0.05,
+    0.1
+  ],
+  "rules": [
+    "no refit, threshold or feature change after viewing test",
+    "one prediction pass per frozen model; multiple predeclared metrics from that pass",
+    "COST/latest CPI are retrospective severity descriptors, not historically available causal savings",
+    "post-test failure cases are for explanation only; no model selection",
+    "test state cold-starts; no backfilled 2012 alerts"
+  ],
+  "student_id": "11230976",
+  "test_periods": [
+    [
+      "2013-2019",
+      "2013-01-01",
+      "2019-12-31"
+    ],
+    [
+      "2020-2022",
+      "2020-01-01",
+      "2022-12-31"
+    ],
+    [
+      "2023-2025",
+      "2023-01-01",
+      "2025-06-30"
+    ]
+  ],
+  "window": [
+    "2013-03-31",
+    "2025-06-30"
+  ]
+}
