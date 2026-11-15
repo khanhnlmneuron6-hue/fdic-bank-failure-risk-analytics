@@ -6,6 +6,8 @@ import nbformat
 import pandas as pd
 import numpy as np
 from fdic_risk.pipeline import dump_json,sha
+from fdic_risk.presentation import unpack_results
+unpack_results()
 checks={}
 nb=nbformat.read(root/'notebooks/fdic_bank_failure_early_warning.ipynb',as_version=4);nbformat.validate(nb)
 cells=[c for c in nb.cells if c.cell_type=='code'];checks['notebook_code_cells_executed']=all(c.execution_count is not None for c in cells)
